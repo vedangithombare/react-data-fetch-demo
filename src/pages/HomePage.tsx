@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+// what do you want in your query stiring?--> ?pageNo=1
+
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function HomePage() {
-  let { pageNo } = useParams();
   const [posts, setPosts] = useState([]);
+  // Used usedsearchparam hook for setting query parameters
+  const [searchParam] = useSearchParams();
+  const pageNo = searchParam.get("pageNo");
   const [currentPage, setCurrentPage] = useState(Number(pageNo) || 1);
   const postsPerPage = 20;
 
-  if (Number(pageNo) !== currentPage) {
-    pageNo = String(currentPage);
-  }
   const endIndex = currentPage * postsPerPage;
   const indexOfFirstPost = endIndex - postsPerPage;
 

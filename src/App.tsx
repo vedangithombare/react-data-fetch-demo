@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/:pageNo" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </Router>
   );
