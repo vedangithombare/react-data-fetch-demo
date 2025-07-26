@@ -1,11 +1,19 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 
+/* eslint-disable react-hooks/exhaustive-deps */
 // what do you want in your query stiring?--> ?pageNo=1
 
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-function HomePage({ posts }) {
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+
+function HomePage({ posts }: { posts: Post[] }) {
   // Used usedsearchparam hook for setting query parameters
   const [searchParam] = useSearchParams();
   const pageNo = searchParam.get("pageNo");
@@ -34,7 +42,7 @@ function HomePage({ posts }) {
   return (
     <>
       <div className="flex  w-full h-full p-2 bg-gray-300 justify-center gap-4 flex-wrap">
-        {currentPosts.map((val) => (
+        {currentPosts.map((val: Post) => (
           <div
             key={`${val.id}`}
             onClick={() => navigate(`/posts/${val.id}`)}

@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function PageDetails({ posts }) {
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+function PageDetails({ posts }: { posts: Post[] }) {
   const id = useParams();
-  const [displayPost, setdisplayPost] = useState();
+  const [displayPost, setdisplayPost] = useState<Post | undefined>();
 
   useEffect(() => {
     for (const post of posts) {
-      if (post.id == id.id) {
+      if (post.id == Number(id.id)) {
         setdisplayPost(post);
         console.log(`displaying post of id ${id.id}`, post);
       }
     }
-  }, [displayPost, id.id]);
+  }, [id.id,posts]);
 
   return (
     <>
