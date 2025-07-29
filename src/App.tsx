@@ -1,11 +1,24 @@
 import HomePage from "./pages/HomePage";
 import PageDetails from "./pages/PageDetails";
+import { postContext } from "./Context";
 import "./index.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   async function fetchPosts() {
     try {
@@ -27,14 +40,25 @@ function App() {
     fetchPosts();
   }, []);
 
+  function PageDetailsWrapper() {
+    const id = useParams();
+    const post = useMemo(
+      () => posts.find((p) => p.id === Number(id.id)),
+      [posts, id.id]
+    );
+
+    return post ? <PageDetails post={post} /> : <p>Loading post...</p>;
+  }
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage posts={posts} />} />
-        <Route path="/posts/:id" element={<PageDetails posts={posts} />} />
-      </Routes>
-    </Router>
+    <postContext.Provider value={posts}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/posts/:id" element={<PageDetailsWrapper />} />
+        </Routes>
+      </Router>
+    </postContext.Provider>
   );
 }
 

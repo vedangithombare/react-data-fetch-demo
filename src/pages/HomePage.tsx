@@ -1,9 +1,10 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
-// what do you want in your query stiring?--> ?pageNo=1
 
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+
+import { Post_Per_Page } from "../constants/constants";
+import { postContext } from "../Context";
 
 interface Post {
   userId: number;
@@ -12,15 +13,15 @@ interface Post {
   body: string;
 }
 
-
-function HomePage({ posts }: { posts: Post[] }) {
+function HomePage() {
   // Used usedsearchparam hook for setting query parameters
   const [searchParam] = useSearchParams();
   const pageNo = searchParam.get("pageNo");
+  const posts  = useContext(postContext);
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(Number(pageNo) || 1);
-  const postsPerPage = 20;
+  const postsPerPage = Post_Per_Page;
 
   const endIndex = currentPage * postsPerPage;
   const indexOfFirstPost = endIndex - postsPerPage;
