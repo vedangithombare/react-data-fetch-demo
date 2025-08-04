@@ -4,7 +4,7 @@ import { useContext, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Post_Per_Page } from "../constants/constants";
-import { postContext } from "../Context";
+import { PostContext } from "../Contexts/PostContexts";
 
 interface Post {
   userId: number;
@@ -17,7 +17,7 @@ function HomePage() {
   // Used usedsearchparam hook for setting query parameters
   const [searchParam] = useSearchParams();
   const pageNo = searchParam.get("pageNo");
-  const posts  = useContext(postContext);
+  const posts  = useContext(PostContext);
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(Number(pageNo) || 1);
