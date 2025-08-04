@@ -1,6 +1,6 @@
 import HomePage from "./pages/HomePage";
 import PageDetails from "./pages/PageDetails";
-import { PostContext } from "./Contexts/PostContexts";
+import { PostContext } from "./contexts/PostContexts";
 import { fetchPosts } from "./api/postApi";
 import type { Post } from "./types/postTypes";
 import "./index.css";

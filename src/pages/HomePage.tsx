@@ -4,7 +4,7 @@ import { useContext, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Post_Per_Page } from "../constants/constants";
-import { PostContext } from "../Contexts/PostContexts";
+import { PostContext } from "../contexts/PostContexts";
 
 interface Post {
   userId: number;
