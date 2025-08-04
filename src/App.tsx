@@ -40,7 +40,7 @@ function App() {
     <PostContext.Provider value={posts}>
       <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/react-task/" element={<HomePage />} />
           <Route path="/posts/:id" element={<PageDetails />} />
         </Routes>
       </Router>
