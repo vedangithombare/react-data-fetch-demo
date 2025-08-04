@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchPostById } from "../apis/postApi";
+import { fetchPostById } from "../api/postApi";
 import type { Post } from "../types/postTypes";
 
 function PageDetails() {
