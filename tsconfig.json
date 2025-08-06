@@ -1,7 +1,19 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    // 👇 This is the most important one
+    "jsx": "react-jsx",         // For React 17+ (or use "react" for React 16 and below)
+
+    // ✅ Make sure these are also present:
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+  },
+  "include": ["src", "src/**/*.ts", "src/**/*.tsx", "tests", "src/setupTests.ts"]
 }

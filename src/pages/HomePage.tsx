@@ -17,7 +17,7 @@ function HomePage() {
   // Used usedsearchparam hook for setting query parameters
   const [searchParam] = useSearchParams();
   const pageNo = searchParam.get("pageNo");
-  const posts  = useContext(PostContext);
+  const posts = useContext(PostContext);
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(Number(pageNo) || 1);
@@ -26,16 +26,20 @@ function HomePage() {
   const endIndex = currentPage * postsPerPage;
   const indexOfFirstPost = endIndex - postsPerPage;
 
+  // check
   const currentPosts = useMemo(() => {
     const currentPosts = posts.slice(indexOfFirstPost, endIndex);
     return currentPosts;
   }, [currentPage, posts, indexOfFirstPost, endIndex]);
 
+  // check
   const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
+  // check
   const goToPrevPage = () => {
     if (currentPage !== 1) setCurrentPage(currentPage - 1);
   };
+  // check
   const goToNextPage = () => {
     if (currentPage !== numberOfPages) setCurrentPage(currentPage + 1);
   };
@@ -59,11 +63,20 @@ function HomePage() {
         {" "}
         {currentPage} {numberOfPages}{" "}
       </div>
+
       <div className="flex flex-row justify-around">
-        <button onClick={goToPrevPage} className="text-4xl cursor-pointer ">
+        <button
+          data-testid="leftBtn"
+          onClick={goToPrevPage}
+          className="text-4xl cursor-pointer "
+        >
           {"<"}
         </button>
-        <button onClick={goToNextPage} className="text-4xl cursor-pointer ">
+        <button
+          data-testid="rightBtn"
+          onClick={goToNextPage}
+          className="text-4xl cursor-pointer "
+        >
           {">"}
         </button>
       </div>

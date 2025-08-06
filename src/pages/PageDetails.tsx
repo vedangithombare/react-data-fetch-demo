@@ -11,6 +11,7 @@ function PageDetails() {
     try {
       const response = await fetchPostById(id);
       const post = await response.json();
+      // check post
       setPost(post);
     } catch (error) {
       console.log(error);
@@ -21,6 +22,7 @@ function PageDetails() {
       fetchPost(id);
     }
   }, [id]);
+  console.log(getPost);
 
   return (
     <>
